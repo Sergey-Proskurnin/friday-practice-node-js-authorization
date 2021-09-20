@@ -10,6 +10,14 @@ const user = new Schema({
     type: String,
     require: true,
   },
+  accessToken: {
+    type: String,
+    default: null,
+  }, 
+  refreshToken: {
+    type: String,
+    default: null,
+  }, 
 });
 const User = model("member", user);
 

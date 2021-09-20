@@ -12,7 +12,7 @@ const creatOne = async (req, res, _next) => {
   }
 };
 
-const getAll = async (req, res, _next) => {
+const getAll = async (_req, res, _next) => {
   try {
     const result = await Products.find();
     res.status(OK).json(result);

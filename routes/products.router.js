@@ -5,7 +5,7 @@ const validateToken = require("../middleware/token.middleware");
 
 const router = Router();
 
-router.get("/health", (req, res, next) => {
+router.get("/health", (_req, res, _next) => {
   res.json({ massage: "OK" });
 });
 
