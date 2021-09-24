@@ -64,12 +64,14 @@ const login = async (req, res) => {
 
 const refresh = async (req, res) => {
   try {
-    const { refreshToken, login } = req.body;
+    const headerAuth = req.get('Authorization');
+    const token = headerAuth.split(' ')[1];
+    const { login } = req.body;
     const user = await User.findOne({ login: login });
     if (!user) {
       return res.status(BAD_REQUEST).json({ error: "Bad request" });
     }
-    if (refreshToken !== user.refreshToken) {
+    if (token !== user.refreshToken) {
       return res.status(BAD_REQUEST).json({ error: "Bad request" });
     }
 
@@ -85,7 +87,7 @@ const refresh = async (req, res) => {
       { refreshToken: newRefreshToken, accessToken }
     );
     const updateUser = await User.findOne({ login: login });
-    res.status(OK).json({ updateUser });
+    res.status(OK).json({ user: updateUser });
   } catch (error) {}
 };
 

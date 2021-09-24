@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const db = require("../db/connection");
+require("../db/connection");
 
 const user = new Schema({
   login: {
